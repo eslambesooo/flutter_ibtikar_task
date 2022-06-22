@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get/get_connect/connect.dart';
 
+import '../modules/home/popular_list_response_model.dart';
 import '../utils/constants.dart';
 
 class NetworkHelper extends GetConnect {

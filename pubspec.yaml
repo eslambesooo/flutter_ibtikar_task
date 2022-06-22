@@ -8,7 +8,9 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.5
-
+  flutter_easyloading: ^3.0.5
+  cached_network_image: ^3.2.1
+  flutter_svg: ^1.1.0
 
 
   flutter: 
