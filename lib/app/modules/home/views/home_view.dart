@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
 import 'package:get/get.dart';
 
-import '../../../network/network_helper.dart';
 import '../../../utils/infinite_scroll_grid.dart';
 import '../controllers/home_controller.dart';
 import 'grid_item_view.dart';
@@ -34,20 +32,22 @@ class HomeView extends GetView<HomeController> {
             shrinkWrap: false,
             childAspectRatio: 0.8,
             itemExtent: 100,
-
             onLoadingStart: (page) async {
               controller.onLoadingStarts(page);
             },
             everythingLoaded: controller.everyThingLoaded.value,
             crossAxisCount: 2,
-
             children: controller.popularList
                 .map(
-                  (e) => InkWell(onTap: (){
-                    controller.getPersonDetails(e.id!);
-
-
-                  },child: GridItemView(person: e)),
+                  (e) => InkWell(
+                      onTap: () {
+                        if (controller.isConnected.isTrue) {
+                          controller.getPersonDetails(e.id!);
+                        } else {
+                          EasyLoading.showError("Internet Connection Error, please check your connection");
+                        }
+                      },
+                      child: GridItemView(person: e)),
                 )
                 .toList(),
           );
@@ -56,5 +56,3 @@ class HomeView extends GetView<HomeController> {
     );
   }
 }
-
-
