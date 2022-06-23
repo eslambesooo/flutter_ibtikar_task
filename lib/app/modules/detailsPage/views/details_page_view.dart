@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
+import '../../ImagePreview/views/image_preview_view.dart';
 import '../controllers/details_page_controller.dart';
 
 class DetailsPageView extends GetView<DetailsPageController> {
@@ -55,7 +56,7 @@ class DetailsPageView extends GetView<DetailsPageController> {
 
                       .map(
                         (e) => InkWell(onTap: (){
-
+Get.to(()=>ImagePreviewView(imageUrl: kImageBase + kOriginalSize +e.filePath!,name: controller.detailsResponse.name!,));
 
 
                     },child: Container(padding: EdgeInsets.all(4),child: CachedNetworkImage(imageUrl:  kImageBase + kthumbSize +e.filePath!,),)),
