@@ -14,11 +14,10 @@ class GridItemView extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    print("${person.name}");
-    print(" person.profilePath! ${person.profilePath}");
+
     return Container(
 
-      //color: Colors.red,
+
       clipBehavior: Clip.antiAliasWithSaveLayer,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: Stack(

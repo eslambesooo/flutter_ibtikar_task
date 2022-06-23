@@ -7,6 +7,10 @@ import 'package:flutter_ibtikar_task/app/network/network_helper.dart';
 import 'package:get/get.dart';
 import 'dart:developer';
 
+import '../../../data/details_response_model.dart';
+import '../../../data/images_response_model.dart';
+import '../../../routes/app_pages.dart';
+
 class HomeController extends GetxController {
   final popularList = <Person>[].obs;
   final everyThingLoaded = false.obs;
@@ -50,6 +54,18 @@ class HomeController extends GetxController {
       log(jsonEncode(newData.first.toJson()));
       popularList.addAll(newData);
     }
+  }
+
+  Future getPersonDetails(int id) async {
+    EasyLoading.show();
+
+    Response response = await networkHelper.getDetails(id.toString());
+    Response response2 = await networkHelper.getPersonImages(id.toString());
+    DetailsResponse detailsResponse = DetailsResponse.fromJson(response.body);
+    ImagesResponse imagesResponse = ImagesResponse.fromJson(response2.body);
+
+    EasyLoading.dismiss();
+    Get.toNamed(Routes.DETAILS_PAGE,arguments: {"detailsResponse":detailsResponse,"imagesResponse":imagesResponse});
   }
 
   @override

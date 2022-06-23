@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
 
@@ -9,7 +10,9 @@ void main() {
     GetMaterialApp(
       title: "Application",
       initialRoute: AppPages.INITIAL,
+      debugShowCheckedModeBanner: false,
       getPages: AppPages.routes,
+      builder: EasyLoading.init(),
     ),
   );
 }

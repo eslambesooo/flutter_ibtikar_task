@@ -43,7 +43,11 @@ class HomeView extends GetView<HomeController> {
 
             children: controller.popularList
                 .map(
-                  (e) => GridItemView(person: e),
+                  (e) => InkWell(onTap: (){
+                    controller.getPersonDetails(e.id!);
+
+
+                  },child: GridItemView(person: e)),
                 )
                 .toList(),
           );
@@ -53,29 +57,4 @@ class HomeView extends GetView<HomeController> {
   }
 }
 
-class GridItem extends StatelessWidget {
-  final String text;
 
-  const GridItem({Key? key, required this.text}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(10),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(color: Theme.of(context).primaryColor.withOpacity(.3), borderRadius: BorderRadius.circular(10)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const CircleAvatar(
-              child: Icon(Icons.image),
-            ),
-            Text(
-              text,
-              style: Theme.of(context).textTheme.bodyText1,
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ));
-  }
-}
